@@ -1,0 +1,13 @@
+from LinkedLists import CircularLinkedList, CircularDoublyLinkedList, DoublyLinkedList, LinkedList
+lista1 = LinkedList()
+lista1.add_multiple_nodes([9,8,7,6,5,4,3,2,1,0])
+lista2 = DoublyLinkedList()
+lista2.add_multiple_nodes([9,8,7,6,5,4,3,2,1,0])
+lista3 = CircularLinkedList()
+lista3.add_multiple_nodes([9,8,7,6,5,4,3,2,1,0])
+lista4 = CircularDoublyLinkedList()
+lista4.add_multiple_nodes([9,8,7,6,5,4,3,2,1,0])
+print(lista1)
+print(lista2)
+print(lista3)
+print(lista4)
