@@ -51,7 +51,6 @@ class ListaEmpleados:
         while current:
             if current.num_t < menor:
                 menor = current.num_t
-                print(f'El nuevo menor es {menor}')
             current = current.link1 
 
         current = self.head 
