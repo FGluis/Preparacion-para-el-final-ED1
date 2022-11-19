@@ -62,12 +62,23 @@ class ListaClientes:
 
         if client == self.head:
             self.head = current.link2
-        if client == self.tail:
+        elif client == self.tail:
             self.tail = prev 
             prev.link2 = None 
         else:
             prev.link2 = current.link2 
             current.link2 = None
+
+    def attendClient(self, caja: Box, client: Client= None):
+        current = self.head
+        if caja.estado == False:
+            caja.monto += current.monto_cliente
+            self.deleteClient(client)
+        else:
+            for cliente in self:
+                caja.monto += cliente.monto_cliente
+            for cliente in self:
+                self.deleteClient(cliente)
 
     def __str__(self) -> str:
         return ' -> '.join([str(cliente) for cliente in self])
@@ -107,32 +118,35 @@ cliente8 = Client(id_cliente=5, monto_cliente=2000)
 cliente9 = Client(id_cliente=44, monto_cliente=3000)
 
 
-boxes = [Box(monto=10000, estado=False),
+boxes = [Box(monto=10000, estado=True),
          Box(monto=5000, estado=False),
-         Box(monto=2000, estado=False),
+         Box(monto=2000, estado=True),
          Box(monto=1500, estado=False),
          Box(monto=0, estado=False)]
 
-lista_clientes = ListaClientes()
 lista_cajas = ListaCajas()
-
-lista_clientes.addClient(cliente3)
-lista_clientes.addClient(cliente4)
-lista_clientes.addClient(cliente1)
-lista_clientes.addClient(cliente2)
 
 for i in range(len(boxes)):
     lista_cajas.addBox(boxes[i])
 
 lista_cajas.head.clientes.addClient(cliente1)
-lista_cajas.head.clientes.addClient(cliente2)
 lista_cajas.head.link1.clientes.addClient(cliente2)
+lista_cajas.head.link1.link1.clientes.addClient(cliente3)
+lista_cajas.head.link1.link1.link1.clientes.addClient(cliente4)
+lista_cajas.head.clientes.addClient(cliente5)
+lista_cajas.head.link1.clientes.addClient(cliente6)
+lista_cajas.head.link1.link1.clientes.addClient(cliente7)
+lista_cajas.head.clientes.addClient(cliente8)
+lista_cajas.head.link1.clientes.addClient(cliente9)
 
-print('Before deleting')
-print(lista_clientes)
+
+print(lista_cajas.head.clientes)
 # lista_clientes.deleteClient(cliente1)
 print('======================================')
-print('After deleting')
-print(lista_clientes)
+print(lista_cajas.head.link1.clientes)
+lista_cajas.head.link1.clientes.attendClient(lista_cajas.head.link1)
+print('======================================')
+print(lista_cajas.head.link1.clientes)
+
 print('======================================')
 print(lista_cajas)
