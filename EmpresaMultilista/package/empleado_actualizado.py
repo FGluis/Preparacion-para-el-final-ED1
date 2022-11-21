@@ -68,7 +68,7 @@ class ListaTareas:
 
 class ListaEmpleados:
     def __init__(self) -> None:
-        self.HEAD
+        self.head = None
         self.headE = None 
         self.tailE = None 
     
